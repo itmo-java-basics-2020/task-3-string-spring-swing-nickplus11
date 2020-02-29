@@ -8,7 +8,9 @@ public class Task3 {
      * Если инпут равен null - вернуть пустой массив
      */
     int[] getShiftedArray(int[] inputArray) {
-        if (inputArray == null || inputArray.length == 0) return new int[]{};
+        if (inputArray == null || inputArray.length == 0) {
+            return new int[]{};
+        }
         int tmp = inputArray[inputArray.length - 1];
         for (int i = inputArray.length - 1; i > 0; --i) {
             int tmp1 = inputArray[i - 1];
@@ -29,7 +31,9 @@ public class Task3 {
      * Пример: 2 4 6 -> 24
      */
     int getMaxProduct(int[] inputArray) {
-        if (inputArray == null || inputArray.length == 0) return 0;
+        if (inputArray == null || inputArray.length == 0) {
+            return 0;
+        }
         int maxPositive1 = 0;
         int maxPositive2 = 0;
         int minNegative1 = 0;
@@ -40,20 +44,28 @@ public class Task3 {
                 if (inputArray[i] > maxPositive1) {
                     maxPositive2 = maxPositive1;
                     maxPositive1 = inputArray[i];
-                } else maxPositive2 = inputArray[i];
+                } else {
+                    maxPositive2 = inputArray[i];
+                }
                 continue;
             }
             if (inputArray[i] < minNegative2) {
                 if (inputArray[i] < minNegative1) {
                     minNegative2 = minNegative1;
                     minNegative1 = inputArray[i];
-                } else minNegative2 = inputArray[i];
+                } else {
+                    minNegative2 = inputArray[i];
+                }
                 continue;
             }
         }
-        if (inputArray.length > 2) return Math.max(maxPositive1 * maxPositive2, minNegative1 * minNegative2);
-        else if (inputArray.length == 2) return inputArray[0] * inputArray[1];
-        else return inputArray[0];
+        if (inputArray.length > 2) {
+            return Math.max(maxPositive1 * maxPositive2, minNegative1 * minNegative2);
+        } else if (inputArray.length == 2) {
+            return inputArray[0] * inputArray[1];
+        } else {
+            return inputArray[0];
+        }
         // TODO solve // done
     }
 
@@ -65,11 +77,15 @@ public class Task3 {
      * Пример: acbr -> 50
      */
     int getABpercentage(String input) {
-        if (input == null) return 0;
+        if (input == null) {
+            return 0;
+        }
         double count = 0;
         String aim = "ABab";
         for (char c : input.toCharArray()) {
-            if (aim.indexOf(c) != -1) ++count;
+            if (aim.indexOf(c) != -1) {
+                ++count;
+            }
         }
         double answ = count / input.length() * 100;
         return (int) answ;
@@ -80,10 +96,16 @@ public class Task3 {
      * Напишите функцию, которая определяет, является ли входная строка палиндромом
      */
     boolean isPalindrome(String input) {
-        if (input == null) return false;
-        if (input.length() == 0) return true;
+        if (input == null) {
+            return false;
+        }
+        if (input.length() == 0) {
+            return true;
+        }
         for (int i = 0; i <= input.length() / 2; ++i) {
-            if (input.toCharArray()[i] != input.toCharArray()[input.length() - i - 1]) return false;
+            if (input.toCharArray()[i] != input.toCharArray()[input.length() - i - 1]) {
+                return false;
+            }
         }
         return true;
         // TODO solve // done
@@ -94,13 +116,16 @@ public class Task3 {
      * где группы одинаковых символов заменены на один символ и кол-во этих символов идущих подряд в строке
      */
     String getEncodedString(String input) {
-        if (input == null || input.length() == 0) return "";
+        if (input == null || input.length() == 0) {
+            return "";
+        }
         char curChar = input.toCharArray()[0];
         int count = 0;
         String out = "";
         for (int i = 0; i < input.length(); ++i) {
-            if (input.toCharArray()[i] == curChar) ++count;
-            else {
+            if (input.toCharArray()[i] == curChar) {
+                ++count;
+            } else {
                 out += curChar;
                 out += count;
                 curChar = input.toCharArray()[i];
@@ -121,11 +146,15 @@ public class Task3 {
      * isPermutation("abc", "Abc") == false;
      */
     boolean isPermutation(String one, String two) {
-        if (one == null || two == null || one.length() != two.length() || one.length() == 0) return false;
+        if (one == null || two == null || one.length() != two.length() || one.length() == 0) {
+            return false;
+        }
         for (char c : one.toCharArray()) {
-            if (two.indexOf(c) == -1) return false;
+            if (two.indexOf(c) == -1) {
+                return false;
+            }
             two = two.substring(0, two.indexOf(c)) +
-                    two.substring(Math.min(two.indexOf(c)+1, two.length() - 1), two.length());
+                    two.substring(Math.min(two.indexOf(c) + 1, two.length() - 1), two.length());
         }
         return true;
         // TODO solve // done
@@ -137,9 +166,13 @@ public class Task3 {
      * Строкой является последовательность символов длинной N, где N > 0
      */
     boolean isUniqueString(String s) {
-        if (s == null || s.length() == 0) return false;
+        if (s == null || s.length() == 0) {
+            return false;
+        }
         for (int i = 0; i < s.length(); ++i) {
-            if (s.lastIndexOf(s.toCharArray()[i]) > i) return false;
+            if (s.lastIndexOf(s.toCharArray()[i]) > i) {
+                return false;
+            }
         }
         return true;
         // TODO solve // done
@@ -151,9 +184,13 @@ public class Task3 {
      * Если входной массив == null - вернуть пустой массив
      */
     int[][] matrixTranspose(int[][] m) {
-        if (m == null) return new int[][]{{}, {}};
+        if (m == null) {
+            return new int[][]{{}, {}};
+        }
         for (int i = 0; i < m.length; ++i) {
-            if (m[i] == null) return new int[][]{{}, {}};
+            if (m[i] == null) {
+                return new int[][]{{}, {}};
+            }
             for (int j = i; j < m[i].length; ++j) {
                 int tmp = m[i][j];
                 m[i][j] = m[j][i];
@@ -174,14 +211,18 @@ public class Task3 {
      * Если исходный массив == null -  вернуть пустую строку
      */
     String concatWithSeparator(String[] inputStrings, Character separator) {
-        if (inputStrings == null) return "";
+        if (inputStrings == null) {
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         char div;
         div = separator == null ? ' ' : separator;
 
         for (int i = 0; i < inputStrings.length; ++i) {
             sb.append(inputStrings[i]);
-            if (i != inputStrings.length - 1) sb.append(div);
+            if (i != inputStrings.length - 1) {
+                sb.append(div);
+            }
         }
         return sb.toString();
         // TODO solve // done
@@ -191,10 +232,14 @@ public class Task3 {
      * Напишите функцию, принимающую массив строк и строку-перфикс и возвращающую кол-во строк массива с данным префиксом
      */
     int getStringsStartWithPrefix(String[] inputStrings, String prefix) {
-        if (inputStrings == null || prefix == null) return 0;
+        if (inputStrings == null || prefix == null) {
+            return 0;
+        }
         int count = 0;
         for (String s : inputStrings) {
-            if (s.indexOf(prefix) == 0) ++count;
+            if (s.indexOf(prefix) == 0) {
+                ++count;
+            }
         }
         return count;
         // TODO solve // done
